@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 public class ApkXmlParse {
     private static final String DEAFULTPATH = "AndroidManifest.xml";
     private static final String CHARSET = "UTF-8";
+    private static final String DEFAULT_NAME = "defaultName";
     private static final String AAPT_SCRIPT = "aapt dump xmltree {0} {1}";
     private static final String ELEMENT_MARK = "E: ";
     private static final String ATTRBUT_MARK = "A: ";
@@ -43,12 +44,13 @@ public class ApkXmlParse {
             StringBuilder xml_title = new StringBuilder("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             StringBuilder name_space = new StringBuilder("xmlns:");
             String name_space_tag = "";
-            //StringBuilder aaptRes = new StringBuilder();
+            StringBuilder aaptRes = new StringBuilder();
+            int deafult_index = 0;
             while (null != (line = proBufferReader.readLine())) {
-                //aaptRes.append(line).append("\r\n");
+                aaptRes.append(line).append("\r\n");
                 if(index < 1 && line.startsWith("N: ")){
                     String[] n_v = line.substring(3).split("=");
-                    name_space.append(n_v[0].trim()).append("=").append("\"").append(n_v[1]).append("\"");
+                    name_space.append(n_v[0].trim()).append("=").append("\"").append(n_v[1]).append("\"").append(" ");
                     name_space_tag = n_v[0];
                 }
 
@@ -76,6 +78,10 @@ public class ApkXmlParse {
                     String aName = null != aae ? name_space_tag + ":" + aae.getAttr() : a_Array[0].replaceAll(ATTRBUT_MARK /*+ "|" + ELE_PREFIX*/, "").trim();
                     if (null == aName)
                         continue;
+                    if(":".equals(aName)){
+                        aName = name_space_tag + ":" +DEFAULT_NAME + deafult_index;
+                        deafult_index++;
+                    }
                     XmlAttribute xmlAttribute = new XmlAttribute();
                     xmlAttribute.setName(aName);
                     xmlDom.get(prex_dom_index).addAttribute(xmlAttribute);
@@ -94,7 +100,7 @@ public class ApkXmlParse {
                     }
                 }
             }
-            return /*aaptRes.append("\r\n").append(*/xml_title.append(printXmlDomStr(xmlDom.get(2), new StringBuilder()).insert(12, name_space))/*)*/.toString();
+            return aaptRes.append("\r\n").append(xml_title.append(printXmlDomStr(xmlDom.get(2), new StringBuilder()).insert(12, name_space))).toString();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -110,7 +116,7 @@ public class ApkXmlParse {
         return null;
     }
 
-    public static StringBuilder printXmlDomStr(XmlElement xmlElement, StringBuilder xmlBuilder) {
+    private static StringBuilder printXmlDomStr(XmlElement xmlElement, StringBuilder xmlBuilder) {
         if (null != xmlElement) {
             xmlBuilder.append("\r\n").append("<").append(xmlElement.getName());
             for (XmlAttribute xa : xmlElement.getAttributes()) {
@@ -125,7 +131,7 @@ public class ApkXmlParse {
         return xmlBuilder;
     }
 
-    public static int getLeftTrimSpace(String value) {
+    private static int getLeftTrimSpace(String value) {
         int len = value.length();
         int st = 0;
         char[] val = value.toCharArray();
@@ -134,14 +140,15 @@ public class ApkXmlParse {
         return st > 0 ? st : 0;
     }
 
-    public static String getElementName(String line) {
+    private static String getElementName(String line) {
         if (null == line)
             return null;
         return line.replaceAll(ELEMENT_MARK, "").replaceAll("\\(line=\\d*\\)", "").replaceAll(ELE_PREFIX, "").trim();
     }
 
     public static void main(String[] args) {
-        System.out.println(loadApk4Path("E:\\com.gaea.wdzz.leshi.213.23.apk", null));
+        //System.out.println(loadApk4Path("E:\\com.gaea.wdzz.leshi.213.23.apk", null));
+        System.out.println(loadApk4Path("E:\\测试相关\\apk\\lls-Letv-v4.5.1-671-20170307-131112.apk", null));
         //System.out.println(loadApk4Path("C:\\Users\\zengping\\Downloads\\com.Nekcom.DYING_Reborn_VR_0727-1477463080176.apk", null));
         //System.out.println(loadApk4Path("E:\\com.iplay.assistant.terrariabox-1488519316863.apk", null));
 

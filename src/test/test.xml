@@ -1,198 +1,600 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="213"
-          android:versionName="1.0.2.4" android:installLocation="0" package="com.gaea.wdzz.leshi"
-          platformBuildVersionCode="19" platformBuildVersionName="4.4.2-1456859">
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="19"></uses-sdk>
-    <uses-feature android:glEsVersion="0x00020000"></uses-feature>
-    <permission android:name="com.gaea.wdzz.leshi.permission.JPUSH_MESSAGE"
-                android:protectionLevel="0x00000002"></permission>
-    <supports-screens android:anyDensity="true" android:normalScreens="true"
-                      android:largeScreens="true"></supports-screens>
-    <application android:theme="@android:0103000A" android:label="@7F060003" android:icon="@7F020017"
-                 android:name="org.cocos2dx.cpp.GameApplication" android:allowBackup="true">
-        <activity android:name="org.cocos2dx.cpp.AppActivity" android:exported="false" android:screenOrientation="0"
-                  android:configChanges="0x40000FFF">
-            <intent-filter>
-                <action android:name="com.android.activity.MY_ACTIONLeshi"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
-            </intent-filter>
-        </activity>
-        <activity android:theme="@7F070004" android:name="cn.jpush.android.ui.PopWinActivity"
-                  android:exported="false"></activity>
-        <activity android:theme="@android:01030006" android:name="cn.jpush.android.ui.PushActivity"
-                  android:exported="false" android:configChanges="0x000000A0">
-            <intent-filter>
-                <action android:name="cn.jpush.android.ui.PushActivity"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
-                <category android:name="com.gaea.wdzz.leshi"></category>
-            </intent-filter>
-        </activity>
-        <service android:name="cn.jpush.android.service.DownloadService" android:enabled="true"
-                 android:exported="false"></service>
-        <service android:name="cn.jpush.android.service.PushService" android:enabled="true" android:exported="false">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTER"></action>
-                <action android:name="cn.jpush.android.intent.REPORT"></action>
-                <action android:name="cn.jpush.android.intent.PushService"></action>
-                <action android:name="cn.jpush.android.intent.PUSH_TIME"></action>
-            </intent-filter>
-        </service>
-        <service android:name="cn.jpush.android.service.DaemonService" android:enabled="true" android:exported="true">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.DaemonService"></action>
-                <category android:name="com.gaea.wdzz.leshi"></category>
-            </intent-filter>
-        </service>
-        <receiver android:name="cn.jpush.android.service.PushReceiver" android:enabled="true" android:exported="false">
-            <intent-filter android:priority="1000">
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"></action>
-                <category android:name="com.gaea.wdzz.leshi"></category>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT"></action>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED"></action>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"></action>
-                <data android:scheme="package"></data>
-            </intent-filter>
-        </receiver>
-        <receiver android:name="org.cocos2dx.cpp.JPushReceiver" android:enabled="true">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTRATION"></action>
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"></action>
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED"></action>
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"></action>
-                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK"></action>
-                <action android:name="cn.jpush.android.intent.CONNECTION"></action>
-                <category android:name="com.gaea.wdzz.leshi"></category>
-            </intent-filter>
-        </receiver>
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" android:exported="false"></receiver>
-        <meta-data android:name="JPUSH_CHANNEL" android:value="wdzz"></meta-data>
-        <meta-data android:name="JPUSH_APPKEY" android:value="0b4a1bacf5688f2f2aad2b8c"></meta-data>
-        <meta-data android:name="my_appId" android:value="cn.wdzz"></meta-data>
-        <meta-data android:name="my_channel" android:value="letv"></meta-data>
-        <activity android:label="@7F060003" android:name="com.example.hjdemo_leshi.splash" android:screenOrientation="0"
-                  android:configChanges="0x400006E4">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="671"
+          android:versionName="4.5.1" package="com.liulishuo.engzo" platformBuildVersionCode="25"
+          platformBuildVersionName="7.1.1">
+    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="25"></uses-sdk>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <permission android:label="log_permission" android:name="com.liulishuo.permission.RECEIVE_MAINTAIN_LOG"
+                android:defaultName0="0"></permission>
+    <permission android:label="log_permission" android:name="com.liulishuo.permission.RECEIVE_FINISH_FLUSH_LOG"
+                android:defaultName1="0"></permission>
+    <uses-permission android:name="com.liulishuo.permission.RECEIVE_MAINTAIN_LOG"></uses-permission>
+    <uses-permission android:name="com.liulishuo.permission.RECEIVE_FINISH_FLUSH_LOG"></uses-permission>
+    <permission android:name="com.liulishuo.service.scorer" android:defaultName2="0"></permission>
+    <permission android:name="com.liulishuo.engzo.permission.MIPUSH_RECEIVE" android:defaultName3="2"></permission>
+    <uses-permission android:name="com.liulishuo.engzo.permission.MIPUSH_RECEIVE"></uses-permission>
+    <application android:defaultName4="@0x7f0c00ab" android:label="@0x7f0a0032" android:icon="@0x7f020055"
+                 android:name=".app.LMApplication" android:defaultName5="false" android:defaultName6="true"
+                 android:defaultName7="true" android:defaultName8="true">
+        <provider android:name="android.support.v4.content.FileProvider" android:defaultName9="false"
+                  android:defaultName10="com.liulishuo.engzo" android:defaultName11="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@0x7f070000"></meta-data>
+        </provider>
+        <meta-data android:name="EASEMOB_APPKEY" android:defaultName12="engzo#lls"></meta-data>
+        <activity android:defaultName13="@0x7f0c00ab" android:name=".app.activity.LauncherActivity"
+                  android:defaultName14="1" android:screenOrientation="1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
+                <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>
         </activity>
-        <activity android:name="com.alipay.sdk.app.H5PayActivity" android:exported="false" android:screenOrientation="1"
-                  android:configChanges="0x000004E0" android:windowSoftInputMode="0x00000012"></activity>
-        <activity android:name="com.alipay.sdk.app.H5AuthActivity" android:exported="false"
-                  android:screenOrientation="1" android:configChanges="0x000000E0"
-                  android:windowSoftInputMode="0x00000012"></activity>
-        <activity android:theme="@android:01030006" android:name="com.letv.lepaysdk.activity.GameCouponActivity"
+        <activity android:name=".app.activity.InitActivity" android:screenOrientation="1"></activity>
+        <meta-data android:name="UMENG_APPKEY" android:defaultName15="51e779c956240ba98e039567"></meta-data>
+        <activity android:defaultName16="@0x1030055" android:name=".wxapi.WXEntryActivity" android:defaultName17="true"
                   android:screenOrientation="1"></activity>
-        <activity android:theme="@android:01030006" android:name="com.letv.lepaysdk.activity.CashierAcitivity"
-                  android:launchMode="1" android:screenOrientation="1"></activity>
-        <activity android:theme="@android:01030006" android:name="com.letv.lepaysdk.activity.PayPasswordActivity"
+        <activity android:defaultName18="@0x1030055" android:name=".wxapi.WXPayEntryActivity"
+                  android:defaultName19="true" android:screenOrientation="1"></activity>
+        <activity android:name=".app.activity.IntroActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".guide.activity.IntroduceActivity" android:defaultName20="1"
+                  android:screenOrientation="1" android:defaultName21="1184" android:defaultName22="32"></activity>
+        <activity android:name=".guide.activity.UserInfoActivity" android:defaultName23="1"
                   android:screenOrientation="1"></activity>
-        <activity android:theme="@7F070014" android:label="@7F0600DE"
-                  android:name="com.le.accountoauth.activity.OauthLoginLetvAccountActivity"
-                  android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070026" android:label="@7F0600E1"
-                  android:name="com.le.accountoauth.activity.AccountManagerActivity" android:screenOrientation="3"
-                  android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070025" android:label="@7F0600E9"
-                  android:name="com.le.accountoauth.activity.LeLoadingActivity" android:screenOrientation="3"
-                  android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@android:01030007" android:label="@7F0600EA"
-                  android:name="com.le.accountoauth.activity.AccountControlActivity" android:screenOrientation="3"
-                  android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070026" android:label="@7F0600EB"
-                  android:name="com.le.accountoauth.activity.FastLoginActivity" android:screenOrientation="3"
-                  android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070014" android:label="@7F0600ED"
-                  android:name="com.le.accountoauth.activity.LeWebViewActivity" android:screenOrientation="3"
-                  android:configChanges="0x000004A0" android:windowSoftInputMode="0x00000010"></activity>
-        <activity android:theme="@7F070014" android:name="com.le.legamesdk.activity.notice.ActionDetailWebActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"
-                  android:windowSoftInputMode="0x00000010"></activity>
-        <activity android:theme="@7F070026" android:name="com.le.legamesdk.activity.notice.AutoUpdateActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070026" android:name="com.le.legamesdk.activity.homepage.LeSDKMainActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:name="com.le.legamesdk.activity.aboutus.AboutUsActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:name="com.le.legamesdk.activity.coupon.CouponActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:name="com.le.legamesdk.activity.inbox.MessageActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:name="com.le.legamesdk.activity.inbox.MessageDetailActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:name="com.le.legamesdk.activity.notice.NoticeDialogActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070021" android:name="com.le.legamesdk.activity.notice.ExitDialogActivity"
-                  android:launchMode="1" android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:label="@7F06011F"
-                  android:name="com.le.legamesdk.activity.security.LePaySafeActivity" android:launchMode="1"
-                  android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:label="@7F06012B"
-                  android:name="com.le.legamesdk.activity.security.BindingPhoneActivity" android:launchMode="1"
-                  android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:label="@7F060138"
-                  android:name="com.le.legamesdk.activity.security.SetPasswordActivity" android:launchMode="1"
+        <activity android:defaultName24="@0x7f0c0153" android:name="com.liulishuo.center.ui.ImageDetailActivity"
+                  android:defaultName25=":tool" android:screenOrientation="1" android:defaultName26="1184"></activity>
+        <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" android:defaultName27="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"></action>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.liulishuo.center.service.MusicService" android:defaultName28="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"></action>
+                <action android:name="android.media.browse.MediaBrowserService"></action>
+            </intent-filter>
+        </service>
+        <activity android:defaultName29="@0x7f0c015c" android:name=".notification.activity.TopicDispatchActivity"
+                  android:screenOrientation="1" android:defaultName30="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser" android:defaultName31="false"
+                  android:defaultName32="160" android:defaultName33="16"></activity>
+        <activity android:name="com.tencent.tauth.AuthActivity" android:defaultName34="2" android:defaultName35="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <data android:defaultName36="tencent100383694"></data>
+            </intent-filter>
+        </activity>
+        <activity android:defaultName37="@0x1030010" android:name="com.tencent.connect.common.AssistActivity"
+                  android:screenOrientation="1" android:defaultName38="160"></activity>
+        <activity android:defaultName39="@0x1030055" android:name="com.liulishuo.share.wechat.WechatHandlerActivity"
+                  android:defaultName40="true" android:screenOrientation="1"></activity>
+        <activity android:defaultName41="@0x1030055" android:name="com.liulishuo.share.weibo.WeiboHandlerActivity"
+                  android:defaultName42="true" android:screenOrientation="1">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.alipay.sdk.app.H5PayActivity" android:defaultName43="false"
+                  android:screenOrientation="3" android:defaultName44="224" android:defaultName45="18"></activity>
+        <activity android:name="com.liulishuo.qpay.QPayCallbackActivity" android:defaultName46="true"
+                  android:defaultName47="1"></activity>
+        <service
+                android:name="com.liulishuo.filedownloader.services.FileDownloadService$SharedMainProcessService"></service>
+        <service android:name="com.liulishuo.filedownloader.services.FileDownloadService$SeparateProcessService"
+                 android:defaultName48=":filedownloader"></service>
+        <service android:name="com.liulishuo.process.pushservice.log.LMLogService" android:defaultName49="false"
+                 android:defaultName50=":pushservice"></service>
+        <service android:name="com.liulishuo.process.pushservice.emchat.LMEMChatService" android:defaultName51="false"
+                 android:defaultName52=":pushservice"></service>
+        <service android:name="com.easemob.chat.EMChatService" android:defaultName53=":pushservice"></service>
+        <service android:name="com.liulishuo.process.scorer.LMScorerService"
+                 android:permission="com.liulishuo.service.scorer" android:defaultName54="false"
+                 android:defaultName55=":scorer"></service>
+        <service android:name="com.liulishuo.process.scorer.LMPreInitScorerProcessService" android:defaultName56="false"
+                 android:defaultName57=":scorer"></service>
+        <activity android:name=".loginregister.activity.LoginActivity" android:screenOrientation="1"
+                  android:defaultName58="1184"></activity>
+        <activity android:name=".loginregister.activity.RegisterActivity" android:screenOrientation="1"
+                  android:defaultName59="1184"></activity>
+        <activity android:name=".loginregister.activity.ForgetPwdActivity" android:screenOrientation="1"
+                  android:defaultName60="1184" android:defaultName61="36"></activity>
+        <activity android:name=".loginregister.activity.ResetPwdActivity" android:screenOrientation="1"
+                  android:defaultName62="1184" android:defaultName63="36"></activity>
+        <activity android:name=".loginregister.activity.VerificationCodeActivity" android:screenOrientation="1"
+                  android:defaultName64="1184" android:defaultName65="36"></activity>
+        <activity android:name=".loginregister.activity.BindMobileActivity" android:screenOrientation="1"
+                  android:defaultName66="1184"></activity>
+        <activity android:name=".loginregister.activity.BindMobileVerificationCodeActivity"
+                  android:screenOrientation="1" android:defaultName67="1184"></activity>
+        <activity android:name=".loginregister.activity.BindMobilePreviewActivity" android:screenOrientation="1"
+                  android:defaultName68="1184"></activity>
+        <activity android:name=".loginregister.activity.BindVerifyPwdActivity" android:screenOrientation="1"
+                  android:defaultName69="1184"></activity>
+        <activity android:name=".loginregister.activity.AfterRegisterActivity" android:screenOrientation="1"
+                  android:defaultName70="1184" android:defaultName71="36"></activity>
+        <activity android:name=".more.activity.MoreAboutActivity" android:screenOrientation="1"
+                  android:defaultName72="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".more.activity.MorellsActivity" android:screenOrientation="1"
+                  android:defaultName73="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".more.activity.MoreSettingsActivity" android:screenOrientation="1"
+                  android:defaultName74="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".more.activity.MoreColorActivity" android:screenOrientation="1"
+                  android:defaultName75="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".more.activity.MorePushPreferenceActivity" android:screenOrientation="1"
+                  android:defaultName76="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".more.activity.MoreFeedbackActivity" android:screenOrientation="1"
+                  android:defaultName77="16"></activity>
+        <activity android:name=".more.activity.RemindUmsActivity" android:screenOrientation="1"
+                  android:defaultName78="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <receiver android:name="o.Sg" android:defaultName79="false">
+            <intent-filter>
+                <action android:name="com.liulishuo.engzo.remind"></action>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        <activity android:name=".more.activity.TraceActivity" android:screenOrientation="1"
+                  android:defaultName80="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".cc.activity.PTActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.SupportActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.PresentActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.VariationsActivity" android:screenOrientation="1"></activity>
+        <activity android:defaultName81="@0x7f0c0042" android:name=".cc.activity.LessonResultActivity"
                   android:screenOrientation="1"></activity>
-        <activity android:theme="@7F070023" android:label="@7F060139"
-                  android:name="com.le.legamesdk.activity.security.VerifyPasswordActivity" android:launchMode="1"
+        <activity android:defaultName82="@0x7f0c0043" android:name=".cc.activity.PTResultActivity"
                   android:screenOrientation="1"></activity>
-        <activity android:theme="@7F070023" android:label="@7F06013E"
-                  android:name="com.le.legamesdk.activity.security.VerifyBoundPhoneActivity" android:launchMode="1"
-                  android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:label="@7F060145"
-                  android:name="com.le.legamesdk.activity.topup.LePaySelectActivity" android:launchMode="1"
-                  android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:label="@7F060158"
-                  android:name="com.le.legamesdk.activity.bankcard.BankCardActivity" android:launchMode="1"
-                  android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@7F070023" android:label="@7F060158"
-                  android:name="com.le.legamesdk.activity.history.TransactionHistoryActivity" android:launchMode="1"
-                  android:screenOrientation="3" android:configChanges="0x000004A0"></activity>
-        <activity android:theme="@android:0103000F" android:name="com.letv.tvos.paysdk.appmodule.pay.PayHomeActivity"
-                  android:screenOrientation="0"></activity>
-        <activity android:theme="@android:0103000F" android:name="com.letv.tvos.paysdk.appmodule.pay.VipChooseActivity"
-                  android:screenOrientation="0"></activity>
-        <activity android:theme="@android:01030007"
-                  android:name="com.letv.tvos.paysdk.appmodule.webview.WebViewActivity"
-                  android:screenOrientation="0"></activity>
-        <meta-data android:name="lepay_appid" android:value="283060"></meta-data>
-        <meta-data android:name="lepaysdk_version" android:value="2.0"></meta-data>
-        <meta-data android:name="lepay_appkey" android:value="d886fd852d00401b85136495a65b9958"></meta-data>
-        <meta-data android:name="LP_CHANNEL_ID" android:value="20"></meta-data>
+        <activity android:name=".cc.activity.PTHistoryActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.UnitSwitchActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.PTEntranceActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.VariationResultActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.UnitResultActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.LevelResultActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.performance.PerformanceIndicatorActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.performance.PerformanceMoreActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.LevelTestEnterActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.LevelTestActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.LevelTestResultActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.UnitLevelFailedActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.LevelTestFailedActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.LevelTestSuccessActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.LevelTestCertificatesActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.GlossaryPracticeActivity" android:screenOrientation="1"></activity>
+        <receiver android:name="o.sN" android:defaultName83="false">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="o.sK" android:defaultName84="false">
+            <intent-filter>
+                <action android:name="com.liulishuo.engzo.cc.remind"></action>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        <activity android:name=".cc.activity.FinishAllLessonActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.StudyPlanActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.QuestionsAnalysisActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.FinishTodayTargetActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.ModifyStudyTargetActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".cc.activity.CCVideoStudyGuideActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".web.activity.CommonUploadAudioActivity" android:screenOrientation="1"
+                  android:defaultName85="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".web.activity.StartAppActivity" android:screenOrientation="1"
+                  android:defaultName86="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <data android:defaultName87="http" android:defaultName88="liulishuo.com"
+                      android:defaultName89="/download"></data>
+                <data android:defaultName90="http" android:defaultName91="www.liulishuo.com"
+                      android:defaultName92="/download"></data>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <data android:defaultName93="lls" android:defaultName94="home"></data>
+            </intent-filter>
+        </activity>
+        <activity android:name=".web.activity.VideoViewActivity" android:screenOrientation="0"
+                  android:defaultName95="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".web.activity.WebViewActivity" android:screenOrientation="1"
+                  android:defaultName96="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".web.activity.CreditActivity" android:screenOrientation="1"
+                  android:defaultName97="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".iap.activity.IAPActivity" android:screenOrientation="1" android:defaultName98="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.activity.DashboardHomeActivity" android:screenOrientation="1"
+                  android:defaultName99="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.activity.TheSpokenForceActivity" android:screenOrientation="1"
+                  android:defaultName100="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.activity.BadgeDetailActivity" android:screenOrientation="1"
+                  android:defaultName101="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.activity.DashboardInfoActivity" android:screenOrientation="1"
+                  android:defaultName102="1184" android:defaultName103="18">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.activity.DashboardBadgeActivity" android:screenOrientation="1"
+                  android:defaultName104="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.activity.DashboardFollowActivity" android:screenOrientation="1"
+                  android:defaultName105="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.activity.DashboardRecordsActivity" android:screenOrientation="1"
+                  android:defaultName106="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".dashboard.activity.DashboardDubListActivity" android:screenOrientation="1"
+                  android:defaultName107="1184"></activity>
+        <activity android:name=".forum.activity.ForumDetailActivity" android:screenOrientation="1"
+                  android:defaultName108="18"></activity>
+        <activity android:name=".forum.activity.ForumBuildTopicActivity" android:screenOrientation="1"
+                  android:defaultName109="18"></activity>
+        <activity android:name=".forum.activity.PostTopicActivity" android:screenOrientation="1"
+                  android:defaultName110="1152" android:defaultName111="18"></activity>
+        <activity android:name=".forum.activity.QAForumActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".forum.activity.QAInviteActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".forum.activity.QAActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".forum.activity.QAWordQuestionActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".podcast.activity.PodcastActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".podcast.activity.PodcastDetailActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".podcast.activity.PodcastDetailActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.TopicListActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.LikeTopicListActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.CircleAddActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.CircleDetailActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.SelectMyCircleActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.CircleSettingInfoActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.CircleSettingDetailActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.CircleSettingRightActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.TopicDetailActivity" android:screenOrientation="1"
+                  android:defaultName112="1152" android:defaultName113="18"></activity>
+        <activity android:name=".circle.activity.CircleCreateActivity" android:screenOrientation="1"
+                  android:defaultName114="16"></activity>
+        <activity android:name=".circle.activity.CircleCategoryActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.CircleApplyActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.CircleManageNotificationActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.ForumCircleActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".circle.activity.TvTopicListActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".search.activity.SearchMainActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".search.activity.UserTopicActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".search.activity.TopicByTagsActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".checkin.activity.CheckInDetailActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".checkin.activity.StudyPlanActivity" android:screenOrientation="1"></activity>
+        <activity android:defaultName115="@0x7f0c015c" android:name=".checkin.activity.CheckInStartActivity"
+                  android:screenOrientation="1" android:defaultName116="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:defaultName117="@0x7f0c015c" android:name=".checkin.activity.CheckInEndActivity"
+                  android:screenOrientation="1" android:defaultName118="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:defaultName119="@0x7f0c015c" android:name=".checkin.activity.CheckInSuccessActivity"
+                  android:screenOrientation="1" android:defaultName120="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:defaultName121="@0x7f0c015c" android:name=".checkin.activity.CCRecommendActivity"
+                  android:screenOrientation="1" android:defaultName122="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".notification.activity.ChatActivity" android:screenOrientation="1"
+                  android:defaultName123="18">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".notification.activity.NotificationActivity" android:screenOrientation="1"
+                  android:defaultName124="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".notification.activity.SystemNotificationActivity" android:screenOrientation="1"
+                  android:defaultName125="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".notification.activity.PushUmsActivity" android:screenOrientation="1"
+                  android:defaultName126="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:defaultName127="@0x7f0c015c" android:name=".notification.activity.PopPushActivity"
+                  android:screenOrientation="1" android:defaultName128="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <service android:name="com.xiaomi.push.service.XMPushService" android:defaultName129="true"
+                 android:defaultName130=":pushservice"></service>
+        <service android:name="com.xiaomi.mipush.sdk.PushMessageHandler" android:defaultName131="true"
+                 android:defaultName132="true"></service>
+        <service android:name="com.xiaomi.mipush.sdk.MessageHandleService" android:defaultName133="true"></service>
+        <receiver android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver" android:defaultName134="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="o.aBb" android:defaultName135="false" android:defaultName136=":pushservice">
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".notification.utlities.LMPushMessageReceiver" android:defaultName137="true">
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR"></action>
+            </intent-filter>
+        </receiver>
+        <activity android:name=".live.activity.LiveActivity" android:screenOrientation="1" android:defaultName138="1184"
+                  android:defaultName139="34"></activity>
+        <activity android:name=".live.activity.HeadSetActivity" android:screenOrientation="1"
+                  android:defaultName140="1184" android:defaultName141="34"></activity>
+        <activity android:name=".live.activity.TeacherEvaluationActivity" android:screenOrientation="1"
+                  android:defaultName142="1184" android:defaultName143="18"></activity>
+        <activity android:name="com.gensee.rtlib.LibActivity"></activity>
+        <activity android:name=".course.activity.SubscribeSessionListActivity" android:screenOrientation="1"
+                  android:defaultName144="1184"></activity>
+        <activity android:name=".course.activity.PracticeActivity" android:screenOrientation="1"
+                  android:defaultName145="1184"></activity>
+        <activity android:name=".course.activity.PracticeSettingsActivity" android:screenOrientation="1"
+                  android:defaultName146="1184"></activity>
+        <activity android:name=".course.activity.AttachDetailActivity" android:screenOrientation="1"
+                  android:defaultName147="1184"></activity>
+        <activity android:name=".course.activity.QuizActivity" android:screenOrientation="1"
+                  android:defaultName148="1184"></activity>
+        <activity android:name=".course.activity.QuizResultActivity" android:screenOrientation="1"
+                  android:defaultName149="1184"></activity>
+        <activity android:defaultName150="@0x7f0c015e" android:name=".course.activity.QuizShareActivity"
+                  android:screenOrientation="1" android:defaultName151="1184" android:defaultName152="16"></activity>
+        <activity android:defaultName153="@0x7f0c015d" android:name=".course.activity.CourseFinishedActivity"
+                  android:screenOrientation="1" android:defaultName154="1184"></activity>
+        <activity android:name=".course.activity.UnitListActivity" android:screenOrientation="1"
+                  android:defaultName155="1184"></activity>
+        <activity android:defaultName156="@0x7f0c015c" android:name=".course.activity.DispatchC8Activity"
+                  android:screenOrientation="1" android:defaultName157="1184"></activity>
+        <activity android:name=".course.activity.LessonListActivity" android:screenOrientation="1"
+                  android:defaultName158="1184"></activity>
+        <activity android:name=".course.activity.DownloadLessonActivity" android:screenOrientation="1"
+                  android:defaultName159="1184"></activity>
+        <activity android:defaultName160="@0x7f0c015c" android:name=".course.activity.DispatchPurchaseActivity"
+                  android:screenOrientation="1" android:defaultName161="1184"></activity>
+        <activity android:name=".course.activity.QuizTranscriptActivity" android:screenOrientation="1"
+                  android:defaultName162="1184"></activity>
+        <activity android:name=".store.activity.StoreCourseGalleryActivity" android:screenOrientation="1"
+                  android:defaultName163="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".store.activity.FinishedC8Activity" android:screenOrientation="1"></activity>
+        <activity android:name=".store.activity.StoreCourseActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".store.activity.StoreSearchActivity" android:screenOrientation="1"
+                  android:defaultName164="4"></activity>
+        <activity android:name=".store.activity.StoreRecommendC8Activity" android:screenOrientation="1"></activity>
+        <activity android:defaultName165="@0x7f0c015c" android:name=".store.activity.DispatchCCActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name=".store.activity.VideoCourseListActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".store.activity.CollectionDetailActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".rank.activity.RankActivity" android:screenOrientation="1"
+                  android:defaultName166="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".rank.activity.RankDialogActivity" android:screenOrientation="1"
+                  android:defaultName167="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".rank.activity.RankPreviewActivity" android:screenOrientation="1"
+                  android:defaultName168="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".rank.activity.LeaderBoardActivity" android:screenOrientation="1"
+                  android:defaultName169="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".rank.activity.RegionListActivity" android:screenOrientation="1"
+                  android:defaultName170="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".order.activity.OrderActivity" android:screenOrientation="1"
+                  android:defaultName171="1184"></activity>
+        <activity android:name=".order.activity.OrderPayActivity" android:screenOrientation="1"
+                  android:defaultName172="1184"></activity>
+        <activity android:defaultName173="@0x7f0c015c" android:name=".order.activity.OrderDispatchActivity"
+                  android:screenOrientation="1" android:defaultName174="1184"></activity>
+        <activity android:defaultName175="@0x7f0c015c" android:name=".order.activity.PayActivity"
+                  android:screenOrientation="1" android:defaultName176="1184"></activity>
+        <activity android:defaultName177="@0x7f0c015c" android:name=".order.activity.QPayCallbackActivity"
+                  android:screenOrientation="1" android:defaultName178="1184">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:defaultName179="qwallet100383694"></data>
+            </intent-filter>
+        </activity>
+        <activity android:name=".videocourse.activity.VideoLessonListActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".videocourse.activity.VideoLessonDetailActivity" android:screenOrientation="1"
+                  android:defaultName180="1184"></activity>
+        <activity android:name=".videocourse.activity.VideoUserLessonDetailActivity" android:screenOrientation="1"
+                  android:defaultName181="1184"></activity>
+        <activity android:name=".videocourse.activity.VideoPracticeLessonActivity" android:screenOrientation="1"
+                  android:defaultName182="1184"></activity>
+        <activity android:name=".videocourse.activity.DownloadVideoLessonActivity" android:screenOrientation="1"
+                  android:defaultName183="1184"></activity>
+        <activity android:name=".videocourse.activity.VideoPreviewActivity" android:screenOrientation="1"
+                  android:defaultName184="1184"></activity>
+        <service android:name=".videocourse.utils.LMVideoComposeService" android:defaultName185=":tool"></service>
+        <activity android:name=".feed.activity.FollowerFeedsActivity" android:screenOrientation="1"></activity>
+        <activity android:defaultName186="@0x7f0c015c" android:name=".feed.activity.DispatchFeedsActivity"
+                  android:screenOrientation="1" android:defaultName187="1184"></activity>
+        <activity android:name=".online.activity.OnlineActivity" android:screenOrientation="1"
+                  android:defaultName188="1184" android:defaultName189="18"></activity>
+        <activity android:name=".lingoonlinesdk.demo.OnlineDemoActivity"></activity>
+        <activity android:name=".glossary.activity.GlossaryListActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".glossary.activity.GlossaryDetailActivity" android:screenOrientation="1"></activity>
+        <activity android:name=".word.activity.WordbookActivity" android:screenOrientation="1"
+                  android:defaultName190="1184"></activity>
+        <activity android:defaultName191="@0x7f0c015b" android:name=".word.activity.WordPreviewActivity"
+                  android:defaultName192="1184"></activity>
+        <activity android:name=".word.activity.RecommendWordGroupListActivity" android:screenOrientation="1"
+                  android:defaultName193="1184"></activity>
+        <activity android:name=".word.activity.RecommendWordGroupDetailActivity" android:screenOrientation="1"
+                  android:defaultName194="1184"></activity>
+        <activity android:name=".word.activity.WordSearchActivity" android:screenOrientation="1"
+                  android:defaultName195="4"></activity>
+        <activity android:name=".word.activity.WordDetailActivity" android:screenOrientation="1"
+                  android:defaultName196="1184"></activity>
+        <meta-data android:name="io.fabric.ApiKey"
+                   android:defaultName197="84190f5c58f93691273aef4ecdb1175a6a6fabf4"></meta-data>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="com.gaea.wdzz.leshi.permission.JPUSH_MESSAGE"></uses-permission>
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"></uses-permission>
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"></uses-permission>
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"></uses-permission>
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"></uses-permission>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
-    <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
-    <uses-permission android:name="android.permission.READ_LOGS"></uses-permission>
-    <uses-permission android:name="android.permission.READ_SMS"></uses-permission>
-    <uses-permission android:name="android.permission.READ_SETTINGS"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_SMS"></uses-permission>
-    <uses-permission android:name="com.letv.android.accountinfo.permission.pay"></uses-permission>
-    <uses-permission android:name="lepay.permission.ACCESS_SERVICE"></uses-permission>
-    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
 </manifest>
