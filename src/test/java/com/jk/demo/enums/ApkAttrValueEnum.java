@@ -1,7 +1,5 @@
 package com.jk.demo.enums;
 
-import java.util.regex.Pattern;
-
 /**
  * Created by zengping on 2017/3/10.
  */
@@ -120,7 +118,7 @@ public enum ApkAttrValueEnum {
                 return Long.parseLong(data.replace("0x", ""), 16) + "";
             }
             return data;
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             return data;
         }
     }
