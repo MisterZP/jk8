@@ -3,7 +3,12 @@ package com.jk.demo;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.*;
+import com.google.common.io.ByteSource;
+import com.google.common.io.Files;
 import org.junit.Test;
+
+import java.io.File;
+import java.util.function.Consumer;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -32,5 +37,9 @@ public class GuavaDemo {
         ImmutableSet<Object> objects = ImmutableSet.builder().addAll(of).add("super").build();
         ImmutableSet<String> set = ImmutableSet.copyOf(of);
         Multiset<Object> multiset = HashMultiset.create(5);
+        ImmutableMultiset<Object> cc_set = ImmutableMultiset.of();
+        cc_set.forEach((object)-> multiset.add(object));
+        ByteSource byteSource = Files.asByteSource(new File("/ccc"));
+
     }
 }

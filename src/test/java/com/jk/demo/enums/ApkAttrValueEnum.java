@@ -92,8 +92,8 @@ public enum ApkAttrValueEnum {
             if (null == data || null == code)
                 return null;
             ApkAttrValueEnum aave = getBean4Code(code);
-            if(data.contains("Raw: "))
-                data  = data.split(" ")[0].trim();
+            if (data.contains("Raw: "))
+                data = data.split(" ")[0].trim();
             if (null == aave)
                 return data;
             Integer code_v = aave.getCodeV();
