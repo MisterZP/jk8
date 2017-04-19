@@ -45,25 +45,43 @@ public class ApkXmlParse {
             StringBuilder xml_title = new StringBuilder("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
             StringBuilder name_space = new StringBuilder("xmlns:");
             String name_space_tag = "";
+            boolean elementstart = false;
             //StringBuilder aaptRes = new StringBuilder();
             int deafult_index = 0;
+            int nameSpaceSetp = 0;
+            int preNSpace = 0;
+            int indexLine = 0;
             while (null != (line = proBufferReader.readLine())) {
+                indexLine++;
                 //aaptRes.append(line).append("\r\n");
                 int space_number = getLeftTrimSpace(line);
                 String lineSub = line.substring(space_number);
                 if (lineSub.startsWith("N: ")) {
-                    if (lineSub.startsWith("N: android")) {
-                        String[] n_v = line.substring(index + 3).split("=");
-                        name_space.append(n_v[0].trim()).append("=").append("\"").append(n_v[1]).append("\"").append(" ");
-                        name_space_tag = n_v[0];
+                    if (!elementstart) {
+                        if (lineSub.startsWith("N: android")) {
+                            String[] n_v = line.substring(index + 3).split("=");
+                            name_space.append(n_v[0].trim()).append("=").append("\"").append(n_v[1]).append("\"").append(" ");
+                            name_space_tag = n_v[0];
+                        }
+                        index = index + 2;
+                    } else {
+                        if (space_number > preNSpace) {
+                            preNSpace = space_number;
+                            nameSpaceSetp += 2;
+                        }
                     }
-                    index = index + 2;
                 }
-                int prex_dom_index = space_number - STEP_BASE;
+                int prex_dom_index = space_number - STEP_BASE - nameSpaceSetp;
                 if (lineSub.startsWith(ELEMENT_MARK)) {
+                    if (space_number <= preNSpace) {
+                        prex_dom_index += (preNSpace - space_number) + STEP_BASE;
+                        nameSpaceSetp -= (preNSpace - space_number) + STEP_BASE;
+                        preNSpace = space_number - STEP_BASE;
+                    }
+                    elementstart = true;
                     XmlElement xe = new XmlElement();
                     xe.setName(getElementName(line));
-                    xmlDom.put(space_number, xe);
+                    xmlDom.put(space_number - nameSpaceSetp, xe);
                     XmlElement preE;
                     if (prex_dom_index > 0 && null != (preE = xmlDom.get(prex_dom_index)))
                         preE.addElements(xe);
@@ -105,7 +123,7 @@ public class ApkXmlParse {
                 }
             }
             return /*aaptRes.append("\r\n").append(*/xml_title.append(printXmlDomStr(xmlDom.get(index), new StringBuilder()).insert(12, name_space))/*)*/.toString();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (null != process)
@@ -169,8 +187,8 @@ public class ApkXmlParse {
 
         /*try (RandomAccessFile accessFile = new RandomAccessFile("E:\\apkurls.csv", "r")) {
             String line;
-            int start  = 900;
-            int end = 1000;
+            int start  = 1000;
+            int end = 1500;
             int index = 0;
             while (null != (line = accessFile.readLine())) {
                 index++;

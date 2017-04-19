@@ -1,105 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:theme="@0x1030006" android:versionCode="16"
-          android:versionName="1.0" android:installLocation="2" package="uk.co.crashlab.trackyTrain"
-          platformBuildVersionCode="23" platformBuildVersionName="6.0-2704002">
-    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23"></uses-sdk>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="17" android:versionName="3.5"
+          package="com.apowo.hysg.leTV" platformBuildVersionCode="15" platformBuildVersionName="4.0.4-1406430">
+    <uses-feature android:glEsVersion="131072"></uses-feature>
     <supports-screens android:anyDensity="true" android:smallScreen="true" android:normalScreen="true"
-                      android:largeScreen="true" android:xlargeScreen="true"></supports-screens>
-    <application android:label="罗盘火车" android:icon="@0x7f020000" android:debuggable="false" android:isGame="true">
-        <activity android:label="罗盘火车" android:name="com.unity3d.player.UnityPlayerNativeActivity"
-                  android:launchMode="2" android:screenOrientation="1" android:configChanges="1073745919">
+                      android:largeScreen="true" android:resizeable="true"></supports-screens>
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"></uses-permission>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"></uses-permission>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"></uses-permission>
+    <uses-permission android:name="com.taobao.statistic.permission.DEVICE_STATE"></uses-permission>
+    <uses-permission android:name="com.ut.permission.DEVICE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_LOGS"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"></uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="18"></uses-sdk>
+    <application android:theme="@0x7f07000a" android:label="@0x7f06007d" android:icon="@0x7f020000"
+                 android:name="com.apowo.projects.GameApplication" android:allowBackup="true">
+        <activity android:theme="@0x1030007" android:label="@0x7f06007d" android:name="com.apowo.projects.Projects"
+                  android:launchMode="1" android:screenOrientation="0" android:configChanges="1184">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER"></category>
-            </intent-filter>
-            <meta-data android:name="unityplayer.UnityActivity" android:value="true"></meta-data>
-            <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true"></meta-data>
-        </activity>
-        <activity android:theme="@0x7f060000" android:name="com.amazon.ags.html5.overlay.GameCircleUserInterface"
-                  android:hardwareAccelerated="false"></activity>
-        <activity android:theme="@0x7f060001" android:name="com.amazon.ags.html5.overlay.GameCircleAlertUserInterface"
-                  android:hardwareAccelerated="false"></activity>
-        <activity android:theme="@0x1030055"
-                  android:name="com.amazon.identity.auth.device.authorization.AuthorizationActivity"
-                  android:launchMode="2" android:allowTaskReparenting="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
-                <category android:name="android.intent.category.BROWSABLE"></category>
-                <data android:scheme="amzn" android:host="uk.co.crashlab.trackyTrain"></data>
             </intent-filter>
         </activity>
-        <receiver android:name="com.amazon.identity.auth.device.authorization.PackageIntentReceiver"
-                  android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_INSTALL"></action>
-                <action android:name="android.intent.action.PACKAGE_ADDED"></action>
-                <data android:scheme="package"></data>
-            </intent-filter>
-        </receiver>
-        <receiver android:name="com.amazon.device.iap.ResponseReceiver">
-            <intent-filter>
-                <action android:name="com.amazon.inapp.purchasing.NOTIFY"
-                        android:permission="com.amazon.inapp.purchasing.Permission.NOTIFY"></action>
-            </intent-filter>
-        </receiver>
-        <receiver android:name="universal.tools.notifications.AlarmBroadcastReceiver"></receiver>
-        <service android:name="universal.tools.notifications.NotificationIntentService"></service>
-        <receiver android:name="universal.tools.notifications.ScheduledNotificationsRestorer">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
-            </intent-filter>
-        </receiver>
-        <activity android:theme="@0x1030011" android:name="com.chartboost.sdk.CBImpressionActivity"
-                  android:excludeFromRecents="true" android:configChanges="1184"
+        <meta-data android:name="GSDK_GameID" android:value="3"></meta-data>
+        <meta-data android:name="GSDK_GameName" android:value="花样三国"></meta-data>
+        <meta-data android:name="GSDK_AuthKey" android:value="3ee7d8a8e4724d76ae1acd2278e4a646"></meta-data>
+        <meta-data android:name="GSDK_GetOrderURL"
+                   android:value="http://hzsg.apowogame.com/pay/create/gsdk"></meta-data>
+        <meta-data android:name="GSDK_PayKey" android:value="c5ad7bff9f5c61944523733a5876b2cc"></meta-data>
+        <meta-data android:name="TESTIN_APPKEY" android:value="eff8271c7476cef35077ab5e31e6438c"></meta-data>
+        <meta-data android:name="DC_APPID" android:value="2076C03EE7034DDB6CC7554C1F34C276"></meta-data>
+        <activity android:theme="@0x7f070008" android:label="提示"
+                  android:name="com.apowo.gsdk.core.BaseBeforPayActivity"></activity>
+        <meta-data android:name="LePay_CoinEnable" android:value="1"></meta-data>
+        <meta-data android:name="GSDK_PlatformName" android:value="leTV"></meta-data>
+        <meta-data android:name="GSDK_PlatformID" android:value="3"></meta-data>
+        <activity android:theme="@0x103000f" android:name="com.letv.tvos.paysdk.appmodule.pay.PayHomeActivity"
+                  android:screenOrientation="0"></activity>
+        <activity android:theme="@0x103000f" android:name="com.letv.tvos.paysdk.appmodule.pay.VipChooseActivity"
+                  android:screenOrientation="0"></activity>
+        <activity android:theme="@0x1030009" android:name="com.letv.ads.ui.LetvWebViewActivityProxy"
+                  android:screenOrientation="1" android:configChanges="1184"
                   android:hardwareAccelerated="true"></activity>
-        <meta-data android:name="com.google.android.gms.version" android:value="@0x7f070000"></meta-data>
-        <activity android:theme="@0x1030011" android:label="罗盘火车"
-                  android:name="com.unity.purchasing.googleplay.PurchaseActivity"
-                  android:configChanges="1073745919"></activity>
-        <activity android:theme="@0x1030011" android:name="com.google.games.bridge.NativeBridgeActivity"></activity>
-        <meta-data android:name="com.google.android.gms.nearby.connection.SERVICE_ID" android:value=""></meta-data>
-        <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="2300631032"></meta-data>
-        <meta-data android:name="com.google.android.gms.appstate.APP_ID" android:value="2300631032"></meta-data>
-        <activity android:theme="@0x1030007" android:name="com.unity3d.ads.android.view.UnityAdsFullscreenActivity"
-                  android:configChanges="1073745919" android:hardwareAccelerated="true"></activity>
-        <activity android:theme="@0x1030010" android:name="yj.kc.dyd.lq" android:taskAffinity=".i"
-                  android:excludeFromRecents="true" android:launchMode="2" android:configChanges="1184"></activity>
-        <service android:name="yj.kc.dyd.hx"></service>
-        <activity android:name="tlyz.bo.crh.ect.itc.tcm" android:exported="true" android:taskAffinity=".jask"
-                  android:excludeFromRecents="true"></activity>
-        <activity android:name="tlyz.bo.crh.ect.itc.go" android:exported="true" android:excludeFromRecents="true"
-                  android:configChanges="1184"></activity>
-        <activity android:name="tlyz.bo.crh.ect.itc.klt" android:exported="true" android:excludeFromRecents="true"
-                  android:configChanges="1184"></activity>
-        <service android:name="tlyz.bo.crh.ect.itc.au"></service>
+        <service android:name="com.letvcloud.cmf.MediaService" android:process=":cmf"></service>
+        <meta-data android:name="LeOpen_AppId" android:value="216882"></meta-data>
+        <meta-data android:name="LeOpen_AppKey" android:value="3ee7d8a8e4724d56ae1acd2278e4a646"></meta-data>
+        <meta-data android:name="LePay_CallbackUrl"
+                   android:value="http://hzsg.apowogame.com/pay/callback/letv"></meta-data>
+        <meta-data android:name="HYSGLoad" android:value=""></meta-data>
+        <meta-data android:name="TESTIN_CHANNEL" android:value="leTV"></meta-data>
+        <meta-data android:name="Yougu_Analy_Channel_ID" android:value="15"></meta-data>
+        <meta-data android:name="HYSG" android:value=""></meta-data>
+        <meta-data android:name="DC_CHANNEL" android:value="leTV"></meta-data>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-    <uses-permission android:name="com.android.vending.BILLING"></uses-permission>
-    <uses-feature android:glEsVersion="131072"></uses-feature>
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false"></uses-feature>
-    <uses-feature android:name="android.hardware.touchscreen" android:required="false"></uses-feature>
-    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false"></uses-feature>
-    <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct"
-                  android:required="false"></uses-feature>
 </manifest>

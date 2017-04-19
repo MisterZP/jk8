@@ -13,6 +13,7 @@
         <commons.lang.version>2.6</commons.lang.version>
         <lombok.version>1.16.4</lombok.version>
         <dom4j.version>1.6.1</dom4j.version>
+        <amqp.client>4.1.0</amqp.client>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -42,6 +43,11 @@
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>${dom4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${amqp.client}</version>
         </dependency>
     </dependencies>
 </project>

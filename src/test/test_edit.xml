@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="45312"
+          android:versionName="6.2.4" package="com.duowan.mobile" platformBuildVersionCode="21"
+          platformBuildVersionName="5.0.1-1624448">
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22"></uses-sdk>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.FLASHLIGHT"></uses-permission>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"></uses-permission>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+    <uses-permission android:name="android.permission.GET_PERMISSIONS"></uses-permission>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"></uses-permission>
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"></uses-permission>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"></uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"></uses-permission>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.REAL_GET_TASK"></uses-permission>
+    <uses-feature android:name="android.hardware.camera" android:required="false"></uses-feature>
+    <uses-feature android:name="android.hardware.camera.front" android:required="false"></uses-feature>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"></uses-feature>
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false"></uses-feature>
+    <uses-feature android:name="android.hardware.screen.landscape"></uses-feature>
+    <uses-feature android:name="android.hardware.wifi" android:required="false"></uses-feature>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
+    <uses-feature android:name="android.hardware.microphone"></uses-feature>
+    <permission android:name="com.duowan.mobile.permission.MIPUSH_RECEIVE" android:protectionLevel="2"></permission>
+    <uses-permission android:name="com.duowan.mobile.permission.MIPUSH_RECEIVE"></uses-permission>
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS"></uses-permission>
+    <supports-screens android:anyDensity="true" android:normalScreen="true" android:largeScreen="true"
+                      android:xlargeScreen="true"></supports-screens>
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED"></uses-permission>
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED"></uses-permission>
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL"></uses-permission>
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED"></uses-permission>
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
+    <application android:theme="@0x7f08002e" android:label="@0x7f090026" android:icon="@0x7f030000"
+                 android:name="com.yy.mobile.YYMobileApp" android:allowBackup="true" android:largeHeap="true"
+                 android:supportsRtl="true">
+        <service android:name="com.xiaomi.push.service.XMPushService" android:enabled="true" android:exported="true"
+                 android:process=":pushservice"></service>
+        <service android:name="com.xiaomi.mipush.sdk.PushMessageHandler" android:enabled="true"
+                 android:exported="true"></service>
+        <service android:name="com.xiaomi.mipush.sdk.MessageHandleService" android:enabled="true"
+                 android:exported="true"></service>
+        <receiver android:name="com.yy.pushsvc.thirdparty.PushXiaomiPushReceiver" android:enabled="true"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </receiver>
+        <receive android:name="com.xiaomi.push.service.receivers.PingReceiver" android:exported="false"
+                 android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER"></action>
+            </intent-filter>
+        </receive>
+        <receiver android:name="com.yy.mobile.ui.notify.ThirdPushReceiver" android:enabled="true"
+                  android:exported="true">
+            <intent-filter android:priority="2000">
+                <action android:name="com.yy.pushsrv.1"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.yy.pushsvc.thirdparty.PushHuaweiPushReceiver">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTRATION"></action>
+                <action android:name="com.huawei.android.push.intent.RECEIVE"></action>
+                <action android:name="com.huawei.android.push.intent.CLICK"></action>
+                <action android:name="com.huawei.intent.action.PUSH_STATE"></action>
+                <action android:name="com.huawei.android.push.plugin.RESPONSE"></action>
+            </intent-filter>
+            <meta-data android:name="CS_cloud_ablitity" android:value="@0x7f09003c"></meta-data>
+        </receiver>
+        <receiver android:name="com.huawei.android.pushagent.PushEventReceiver" android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REFRESH_PUSH_CHANNEL"></action>
+                <action android:name="com.huawei.intent.action.PUSH"></action>
+                <action android:name="com.huawei.intent.action.PUSH_ON"></action>
+                <action android:name="com.huawei.android.push.PLUGIN"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"></action>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"></action>
+                <data android:scheme="package"></data>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.huawei.android.pushagent.PushBootReceiver" android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTER"></action>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
+            </intent-filter>
+            <meta-data android:name="CS_cloud_version" android:value="2705"></meta-data>
+        </receiver>
+        <service android:name="com.huawei.android.pushagent.PushService" android:process=":pushservice"></service>
+        <activity android:theme="@0x7f08001b" android:name="com.huawei.android.pushselfshow.richpush.RichPushActivity"
+                  android:process=":pushservice" android:screenOrientation="1" android:configChanges="9348">
+            <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui"></meta-data>
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.RICHPUSH"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:theme="@0x1030134"
+                  android:name="com.huawei.android.pushselfshow.permission.RequestPermissionsActivity"
+                  android:exported="false" android:launchMode="1" android:screenOrientation="1"
+                  android:configChanges="9348"></activity>
+        <activity android:label="@0x7f090026" android:name="com.yy.mobile.ui.gamecenter.InitActivity"></activity>
+        <activity android:name="com.duowan.plugin.base.activity.DWProxyActivity" android:screenOrientation="1"
+                  android:configChanges="168"></activity>
+        <activity android:name="com.duowan.plugin.base.activity.DWProxyFragmentActivity" android:screenOrientation="1"
+                  android:configChanges="168"></activity>
+        <service android:name="com.duowan.plugin.base.service.DWProxyService"></service>
+        <activity android:theme="@0x1030055" android:name="com.yy.mobile.ui.EmptyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <data android:scheme="yymobile" android:host="installapp"></data>
+            </intent-filter>
+        </activity>
+        <activity android:theme="@0x7f08002f" android:name="com.yy.mobile.ui.splash.SplashActivity"
+                  android:screenOrientation="1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.yy.mobile.ui.splash.SplashAdActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.home.MainActivity" android:launchMode="2" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="48">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <data android:scheme="yymobile"></data>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <data android:scheme="http" android:host="3g.yy.com" android:path="/downApp.html"></data>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <data android:scheme="tbopen" android:host="23473438"></data>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.yy.mobile.ui.toChannelVideo"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.yy.mobile.ui.login.LoginActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.SafeCenterActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.home.navto.TopicDetailActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.shenqu.SmallVideoMainActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="32"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.anchor.NewPersonPageActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="32"></activity>
+        <activity android:name="com.yy.mobile.ui.sharpgirls.SharpGirlUploadActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.sharpgirls.SharpGirlUploadVideoActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.suggest.SuggestActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.publish.PublishMomentActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.refer.ReferMomentActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.share.ShareMomentActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.comment.MomentCommentOrReplyActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.momentList.MomentListActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.momentList.MomentNewListActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.momentList.MomentListImagePreviewActivity"
+                  android:launchMode="2" android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.detail.MomentDetailActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.moment.momentList.MomentVideoPlayActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.mobilelive.MobileLiveLeaveActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.swivelChair.SwivelChairActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.mobilelive.MobileLiveReplayActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.channeltemplate.template.mobilelive.MobileLiveChannelActivity"
+                  android:exported="true" android:launchMode="2" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.channellinklist.ChannelLinkSubListActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:theme="@0x7f080030"
+                  android:name="com.yy.mobile.ui.turntable.TurnTableAttachedActivity"></activity>
+        <activity android:name="com.yy.mobile.ui.mobilelive.MobileLivePersonalReplayActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.business.ShelvesActivity" android:launchMode="2"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.business.AnchorOprGoodsActivity" android:launchMode="2"
+                  android:configChanges="1184" android:windowSoftInputMode="32"></activity>
+        <activity android:name="com.yy.mobile.ui.ylink.LiveTemplateActivity" android:exported="true"
+                  android:launchMode="2" android:screenOrientation="1" android:configChanges="1200"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.ylink.ChannelPrepareActivity" android:screenOrientation="1"
+                  android:configChanges="1200" android:windowSoftInputMode="34"></activity>
+        <activity android:theme="@0x1030055"
+                  android:name="com.yy.mobile.ui.screencapture.ScreenCaptureActivity"></activity>
+        <activity android:name="com.duowan.mobile.ui.shenqu.ShenquMainActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.ugcplay.ShortVideoDisplayActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.duowan.mobile.ui.shortvideo.ShenquVideoSquareActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.duowan.mobile.ui.camera.VideoLocalActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.duowan.mobile.ui.camera.VideoWorkActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.duowan.mobile.ui.camera.VideoReleaseActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="34"></activity>
+        <activity android:name="com.duowan.mobile.ui.camera.TopicSearchActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="34"></activity>
+        <activity android:name="com.duowan.mobile.ui.camera.VideoLocalMusicActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.duowan.mobile.ui.userinfo.ShenquLikedListActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.duowan.mobile.ui.userinfo.ProductionActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.duowan.mobile.ui.anchorinfo.MyShenquInfoActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.duowan.mobile.ui.shortvideo.videotopic.VideoTopicGroupActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.duowan.mobile.ui.shortvideo.videotopic.TinyVideoTopicActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.duowan.mobile.ui.shortvideo.videotopic.VideoGroupShareActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.duowan.mobile.ui.shortvideo.videotopic.ContractTopicGroupActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.duowan.mobile.ui.shortvideo.videotopic.GroupHeaderReportActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.duowan.mobile.ui.shortvideo.videotopic.GroupHeaderManagerActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <service android:label="PushService" android:name="com.yy.pushsvc.PushService" android:enabled="true"
+                 android:exported="true" android:process=":com.yy.pushsvc.PushService">
+            <intent-filter android:priority="1000">
+                <action android:name="com.yy.pushsvc.IPushSvc.com.duowan.mobile"></action>
+            </intent-filter>
+        </service>
+        <service android:label="YYService" android:name="com.yyproto.base.YYSdkService"
+                 android:enabled="true"></service>
+        <receiver android:name="com.yy.mobile.ui.notify.YYTokenReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="com.duowan.mobile.push.receiver.token"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.yy.mobile.ui.notify.YYPushReceiverProxy" android:enabled="true">
+            <intent-filter android:priority="214748364">
+                <action android:name="com.yy.pushsrv.1"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.yy.mobile.ui.notify.YYPushReceiver" android:enabled="true"
+                  android:process=":com.yy.pushsvc.PushService">
+            <intent-filter android:priority="2">
+                <action android:name="com.duowan.mobile.push.receiver.msg"></action>
+                <action android:name="com.duowan.mobile.CLEAR_IM_MSG"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.yy.pushsvc.WakeUpReceiver" android:enabled="true" android:exported="true"
+                  android:process=":com.yy.pushsvc.PushService">
+            <intent-filter>
+                <action android:name="com.yy.pushsvc.WakeUpBroadcast"></action>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_AVAILABLE"></action>
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="android.intent.action.PACKAGE_ADDED"></action>
+                <action android:name="android.intent.action.PACKAGE_CHANGED"></action>
+                <action android:name="android.intent.action.PACKAGE_INSTALL"></action>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"></action>
+                <action android:name="android.intent.action.PACKAGE_REPLACED"></action>
+                <data android:scheme="package"></data>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_MOUNTED"></action>
+                <action android:name="android.intent.action.MEDIA_EJECT"></action>
+                <action android:name="android.intent.action.MEDIA_UNMOUNTED"></action>
+                <action android:name="android.intent.action.MEDIA_SHARED"></action>
+                <action android:name="android.intent.action.MEDIA_SCANNER_STARTED"></action>
+                <action android:name="android.intent.action.MEDIA_SCANNER_FINISHED"></action>
+                <action android:name="android.intent.action.MEDIA_REMOVED"></action>
+                <action android:name="android.intent.action.MEDIA_BAD_REMOVA"></action>
+                <data android:scheme="file"></data>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_HEADSET_PLUG"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SIM_STATE_CHANGED"></action>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="appKey" android:value="1"></meta-data>
+        <meta-data android:name="PushServiceAction"
+                   android:value="com.yy.pushsvc.IPushSvc.com.duowan.mobile"></meta-data>
+        <meta-data android:name="UMENG_APPKEY" android:value="587f43f007fe6510370003f9"></meta-data>
+        <meta-data android:name="UMENG_MESSAGE_SECRET" android:value="785c34203c2973698f1d9cbcfbcf307d"></meta-data>
+        <meta-data android:name="logToFile" android:value="true"></meta-data>
+        <meta-data android:name="logFileDir" android:value="yymobile/logs/sdklog"></meta-data>
+        <meta-data android:name="encrypt_cmd" android:value="0"></meta-data>
+        <meta-data android:name="encrypt_version" android:value="3.0.1"></meta-data>
+        <meta-data android:name="android.max_aspect" android:value="2.1"></meta-data>
+        <activity android:name="com.yy.mobile.ui.profile.personal.ProfileActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.personal.EditProfileActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.personal.EditHeadActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.messagenotifycenter.MessageCenterActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.messagenotifycenter.MessageHistoryActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.messagenotifycenter.MessageDetailActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.common.MultiPhotoDisplayActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.SettingActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.AboutActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.LogActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.EnvSettingActivity" android:screenOrientation="1"
+                  android:windowSoftInputMode="2"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.subscribe.SubscribeActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.subscribe.SubscribeYFriendActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.pay.RechargeActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.pay.RechargeNewActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.pay.YYPayWebviewActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.im.chat.WebViewOridinalActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.alipay.sdk.app.H5PayActivity" android:exported="false" android:screenOrientation="3"
+                  android:configChanges="224"></activity>
+        <activity android:name="com.alipay.sdk.auth.AuthActivity" android:exported="false" android:screenOrientation="3"
+                  android:configChanges="224"></activity>
+        <activity android:name="com.yy.mobile.ui.sharpgirls.SharpGirlsActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.sharpgirls.SharpGirlsHomeActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.common.JsSupportWebAcitivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18">
+            <intent-filter>
+                <action android:name="com.yy.mobile.ui.common.JsSupportWebAcitivity"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.yy.mobile.ui.widget.photopicker.AlbumPickActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.widget.photopicker.PhotoPickActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.widget.photopicker.PhotoPickPreviewActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.PhotoUploadActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.PhotoUploadPreviewActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.AlbumSelectActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.QualitySelectActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.StaggeredGridActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.GalleryPickPhotoActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.GalleryBigPhotoDisplayActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.GalleryAnchorDetailActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.gallery.GalleryDisplayActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.home.LivingSubNavActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.user.UserGalleryActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="32"></activity>
+        <activity android:name="com.yy.mobile.ui.sharpgirls.SharpGirlsTabsActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.sharpgirls.SharpGirlsPhotoActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.sharpgirls.SharpGirlDisplayActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.sharpgirls.SharpGirlsMainActivity" android:screenOrientation="1"
+                  android:configChanges="1184">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="com.yy.mobile.sharpgirl.main"></action>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.yy.mobile.ui.widget.SelectProvinceCityActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.anchor.AnchorCharacteristicActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.personal.RecordActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.user.UserCareActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.user.MyFansActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.user.CommonPointActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:theme="@0x1030010" android:name="com.yy.mobile.ui.profile.takephoto.PictureTakerActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.MsgNoticeActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.PushSettingActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.BlackListSettingActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.AddFriendSettingActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.AddFriendQuestionActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.DeatailAnswerQuestionActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.im.MyChatActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.im.addfriend.AddFriendGroupActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:theme="@0x1030010" android:name="com.mob.tools.MobUIShell" android:screenOrientation="3"
+                  android:configChanges="1184" android:windowSoftInputMode="18">
+            <meta-data android:name="AuthorizeAdapter" android:value="com.yy.android.MyAuthorizeAdapter"></meta-data>
+            <intent-filter>
+                <data android:scheme="db-7janx53ilz11gbs"></data>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="tencent100734842"></data>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:theme="@0x1030010" android:name="com.duowan.mobile.wxapi.WXEntryActivity"
+                  android:exported="true" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.search.SearchResultActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.search.SearchActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.search.SearchResultTopicActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="3"></activity>
+        <activity android:name="com.yy.mobile.ui.search.SearchResultGameActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.widget.InputTextActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.widget.SelectGenderActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.common.PhotoDisplayActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.im.chat.PhotoViewPagerDisplayActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.im.SystemMessageActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.im.chat.PersonalChatActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.im.chat.GroupChatActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.im.GroupDetailInfoActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.im.addfriend.FriendValidateActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="5"></activity>
+        <activity android:name="com.yy.mobile.ui.im.MySayHelloActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <meta-data android:name="Channel_ID" android:value="@0x7f09012e"></meta-data>
+        <meta-data android:name="SvnBuildVersion" android:value="562490"></meta-data>
+        <activity android:name="com.yy.mobile.ui.profile.anchor.AnchorFansListActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.profile.personal.ChannelListActivity"></activity>
+        <activity android:name="com.yy.mobile.ui.camera.VideoReleaseActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="34"></activity>
+        <activity android:name="com.yy.mobile.ui.camera.VideoLocalMusicActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.ui.privatemsg.PrivateMsgListActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.shenqu.videoplayer.FollowerChooserActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:theme="@0x103000a" android:name="com.yy.mobile.ui.profile.personal.BindYYAccountActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.hjbsdk.ui.activity.H5Activity" android:exported="false" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="224" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.channel.SignDetailsActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="Hc1ZgEykXrEGZG3HVmlFGcE1"></meta-data>
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2"></action>
+            </intent-filter>
+        </service>
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="9af84f7476cf3b72cc0628e9574e3fde"></meta-data>
+        <service android:name="com.amap.api.location.APSService"></service>
+        <service android:name="com.yy.mobile.ui.screencapture.ScreenCaptureService"></service>
+        <activity android:name="com.yy.mobile.ui.home.navto.PreviewActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.home.navto.TopicListActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.home.navto.LivingMorePageActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.home.label.LivingLabelPageActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.duowan.mobile.wxapi.WXPayEntryActivity" android:exported="true"
+                  android:launchMode="1"></activity>
+        <activity android:name="com.yy.mobile.ui.setting.uishow.YYUIShowActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.login.MobilePhoneTokenAuthActivity" android:launchMode="2"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.login.SMSDownVerificationActivity" android:launchMode="2"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.login.SMSUpVerificationActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.login.MobilePhoneNumLoginActivity" android:screenOrientation="1"
+                  android:windowSoftInputMode="16"></activity>
+        <activity android:name="com.yy.mobile.ui.login.SetPasswordActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.udbauth.open.BridgeActivity"></activity>
+        <activity android:name="com.yy.mobile.ui.login.CountrySelectActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.login.PolicyActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.login.xiaomi.XiaoMiThirdPartyLoginActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.report.ImReportActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.im.MyChatSettingActivity" android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.ui.yyconnector.QRcodeScanActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.lib_zxing.activity.CaptureActivity" android:screenOrientation="1"
+                  android:configChanges="160" android:windowSoftInputMode="3"></activity>
+        <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+        <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"></uses-permission>
+        <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+        <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+        <activity android:name="com.android.moblie.zmxy.antgroup.creditsdk.app.SDKActivity"
+                  android:process=":certify_sdk" android:screenOrientation="1"></activity>
+        <activity android:name="com.android.moblie.zmxy.antgroup.creditsdk.ui.FaceVerifyGuideActivity"
+                  android:process=":certify_sdk" android:screenOrientation="1"></activity>
+        <activity android:name="com.android.moblie.zmxy.antgroup.creditsdk.ui.face.FaceDetectActivity"
+                  android:process=":certify_sdk" android:screenOrientation="1"></activity>
+        <activity android:theme="@0x1030006" android:name="zhimacertify.ZhimaCustomerCertifyActivity"
+                  android:process=":certify_sdk" android:screenOrientation="1"></activity>
+        <activity android:label="@0x7f090026" android:name="com.yy.mobile.ylink.dynamicload.DLProxyActivity">
+            <intent-filter>
+                <action android:name="com.yy.mobile.ylink.dynamicload.proxy.activity.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <activity android:label="@0x7f090026" android:name="com.yy.mobile.ylink.dynamicload.DLProxyFragmentActivity">
+            <intent-filter>
+                <action android:name="com.yy.mobile.ylink.dynamicload.proxy.fragmentactivity.VIEW"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+        <service android:name="com.yy.mobile.ylink.dynamicload.DLProxyService"></service>
+        <service android:name="com.yy.mobile.backgroundprocess.RemoteBackgroundProcess" android:exported="false"
+                 android:process=":RemoteBackgroundProcess"></service>
+        <receiver android:name="com.yy.mobile.backgroundprocess.processprotecter.BackgroundProcessBroadcastReveiver"
+                  android:process=":RemoteBackgroundProcess">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"></action>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"></action>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.taobao.accs.ChannelService" android:exported="true" android:process=":channel">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.SERVICE"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.ELECTION"></action>
+            </intent-filter>
+        </service>
+        <service android:name="com.taobao.accs.data.MsgDistributeService" android:exported="true">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"></action>
+            </intent-filter>
+        </service>
+        <receiver android:name="com.taobao.accs.EventReceiver" android:process=":channel">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"></action>
+                <data android:scheme="package"></data>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.taobao.accs.ServiceReceiver" android:exported="false" android:process=":channel">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.COMMAND"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.START_FROM_AGOO"></action>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.taobao.accs.ChannelService$KernelService" android:process=":channel"></service>
+        <service android:name="org.android.agoo.accs.AgooService" android:exported="true">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"></action>
+            </intent-filter>
+        </service>
+        <service android:name="com.umeng.message.UmengIntentService" android:exported="true" android:process=":channel">
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RECEIVE"></action>
+            </intent-filter>
+        </service>
+        <receiver android:name="com.taobao.agoo.AgooCommondReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="com.duowan.mobile.intent.action.COMMAND"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"></action>
+                <data android:scheme="package"></data>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
+                  android:exported="false"></receiver>
+        <service android:name="com.umeng.message.UmengMessageCallbackHandlerService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.umeng.messge.registercallback.action"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.umeng.message.enablecallback.action"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.umeng.message.disablecallback.action"></action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.umeng.message.message.handler.action"></action>
+            </intent-filter>
+        </service>
+        <service android:name="com.umeng.message.UmengDownloadResourceService" android:exported="false"></service>
+        <service android:name="com.umeng.message.UmengMessageIntentReceiverService" android:exported="true"
+                 android:process=":channel">
+            <intent-filter>
+                <action android:name="org.android.agoo.client.MessageReceiverService"></action>
+            </intent-filter>
+        </service>
+        <provider android:name="com.umeng.message.provider.MessageProvider" android:exported="false"
+                  android:authorities="com.duowan.mobile.umeng.message">
+            <grant-uri-permission android:pathPattern=".*"></grant-uri-permission>
+        </provider>
+        <activity android:name="com.yy.android.small.A" android:launchMode="0" android:configChanges="1184"></activity>
+        <activity android:theme="@0x103000f" android:name="com.yy.android.small.A1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A10" android:launchMode="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A11" android:launchMode="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A12" android:launchMode="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A13" android:launchMode="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A20" android:launchMode="2"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A21" android:launchMode="2"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A22" android:launchMode="2"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A23" android:launchMode="2"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A30" android:launchMode="3"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A31" android:launchMode="3"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A32" android:launchMode="3"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.android.small.A33" android:launchMode="3"
+                  android:configChanges="1184"></activity>
+        <service android:name="com.yy.small.pluginmanager.PluginService" android:enabled="true" android:exported="true"
+                 android:process=":PluginService"></service>
+        <service android:name="com.yy.small.pluginmanager.DexOptService" android:process=":yydexopt"></service>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shenqu.ShenquMainActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.ShenquVideoSquareActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.camera.VideoRecordActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.camera.VideoLocalActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.camera.VideoWorkActivity"
+                  android:screenOrientation="1"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.camera.VideoReleaseActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="34"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.camera.VideoEditActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.camera.VideoLabelEditNewActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.camera.TopicSearchActivity" android:screenOrientation="1"
+                  android:configChanges="1184" android:windowSoftInputMode="34"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.camera.VideoLocalMusicActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.userinfo.ShenquLikedListActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.userinfo.ProductionActivity" android:screenOrientation="1"
+                  android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.anchorinfo.MyShenquInfoActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.videotopic.VideoTopicGroupActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.videotopic.TinyVideoTopicActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.videotopic.VideoGroupShareActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.videotopic.ContractTopicGroupActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.videotopic.GroupHeaderReportActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.videotopic.GroupHeaderManagerActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.ShenquMeViedoActivity"
+                  android:screenOrientation="1" android:configChanges="1184"></activity>
+        <activity android:name="com.yy.mobile.qupaishenqu.ui.shortvideo.play.ShortVideoPlayActivity"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.mobilelive.MobileLiveReplayLeaveActivity" android:launchMode="2"
+                  android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+        <activity android:name="com.yy.mobile.ui.mshowlive.MobileLiveMShowActivity" android:exported="true"
+                  android:launchMode="2" android:screenOrientation="1" android:configChanges="1184"
+                  android:windowSoftInputMode="18"></activity>
+    </application>
+</manifest>
