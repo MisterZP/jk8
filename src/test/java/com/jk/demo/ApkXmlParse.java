@@ -105,9 +105,6 @@ public class ApkXmlParse {
                         deafult_index++;
                     }
                     XmlAttribute xmlAttribute = new XmlAttribute();
-                    if("style".equals(aName)){
-                        System.out.println(line);
-                    }
                     xmlAttribute.setName(aName);
                     xmlDom.get(prex_dom_index).addAttribute(xmlAttribute);
                     Matcher vmc = VALUE_TYPE.matcher(a_Array[1]);
