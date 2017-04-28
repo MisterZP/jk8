@@ -46,14 +46,14 @@ public class ApkXmlParse {
             StringBuilder name_space = new StringBuilder("xmlns:");
             String name_space_tag = "";
             boolean elementstart = false;
-            //StringBuilder aaptRes = new StringBuilder();
+            StringBuilder aaptRes = new StringBuilder();
             int deafult_index = 0;
             int nameSpaceSetp = 0;
             int preNSpace = 0;
             int indexLine = 0;
             while (null != (line = proBufferReader.readLine())) {
                 indexLine++;
-                //aaptRes.append(line).append("\r\n");
+                aaptRes.append(line).append("\r\n");
                 int space_number = getLeftTrimSpace(line);
                 String lineSub = line.substring(space_number);
                 if (lineSub.startsWith("N: ")) {
@@ -97,7 +97,7 @@ public class ApkXmlParse {
                         aae = ApkAttrEnum.getAttrValue4Code(find.substring(1, find.length() - 1));
                         a_Array[0] = a_Array[0].replaceAll(MATCHER_TYPE.toString(), "");
                     }
-                    String aName = null != aae ? name_space_tag + ":" + aae.getAttr() : a_Array[0].replaceAll(ATTRBUT_MARK /*+ "|" + ELE_PREFIX*/, "").trim();
+                    String aName = null != aae ? name_space_tag + ":" + aae.getAttr() : a_Array[0].replaceAll(ATTRBUT_MARK +  "|:" /*+ "|" + ELE_PREFIX*/, "").trim();
                     if (null == aName)
                         continue;
                     if (":".equals(aName)) {
@@ -117,12 +117,12 @@ public class ApkXmlParse {
                             String content = v_ma.group();
                             xmlAttribute.setValue(content.substring(1, content.length() - 1));
                         } else {
-                            xmlAttribute.setValue(a_Array[1].startsWith("\"") ? a_Array[1].substring(1, a_Array[1].indexOf("\"", 1)) : a_Array[1].trim());
+                            xmlAttribute.setValue(a_Array[1].startsWith("\"") ? a_Array[1].substring(1, a_Array[1].indexOf("\"", 1)) : a_Array[1].replaceAll("\"","").trim());
                         }
                     }
                 }
             }
-            return /*aaptRes.append("\r\n").append(*/xml_title.append(printXmlDomStr(xmlDom.get(index), new StringBuilder()).insert(12, name_space))/*)*/.toString();
+            return aaptRes.append("\r\n").append(xml_title.append(printXmlDomStr(xmlDom.get(index), new StringBuilder()).insert(12, name_space))).toString();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -169,8 +169,8 @@ public class ApkXmlParse {
     }
 
     public static void main(String[] args) throws IOException {
-        File fileDir = new File("E:\\测试相关\\apk\\");
-        //File fileDir = new File("E:\\apkUrl\\");
+        //File fileDir = new File("E:\\测试相关\\apk\\");
+        File fileDir = new File("E:\\apkUrl\\");
         if (!fileDir.isDirectory() || fileDir.list().length < 1)
             return;
         for (File file : fileDir.listFiles((pathname) -> {

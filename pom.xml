@@ -14,6 +14,7 @@
         <lombok.version>1.16.4</lombok.version>
         <dom4j.version>1.6.1</dom4j.version>
         <amqp.client>4.1.0</amqp.client>
+        <javax.mail>1.4</javax.mail>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -48,6 +49,11 @@
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
             <version>${amqp.client}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${javax.mail}</version>
         </dependency>
     </dependencies>
 </project>
