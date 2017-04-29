@@ -97,10 +97,10 @@ public class ApkXmlParse {
                         aae = ApkAttrEnum.getAttrValue4Code(find.substring(1, find.length() - 1));
                         a_Array[0] = a_Array[0].replaceAll(MATCHER_TYPE.toString(), "");
                     }
-                    String aName = null != aae ? name_space_tag + ":" + aae.getAttr() : a_Array[0].replaceAll(ATTRBUT_MARK + "|:" /*+ "|" + ELE_PREFIX*/, "").trim();
+                    String aName = null != aae ? name_space_tag + ":" + aae.getAttr() : dealAttr(a_Array[0]).trim();
                     if (null == aName)
                         continue;
-                    if (":".equals(aName)) {
+                    if ("".equals(aName)) {
                         aName = name_space_tag + ":" + DEFAULT_NAME + deafult_index;
                         deafult_index++;
                     }
@@ -153,6 +153,17 @@ public class ApkXmlParse {
         return xmlBuilder;
     }
 
+    private static String dealAttr(String src){
+        if(null != src){
+            src = src.replaceAll(ATTRBUT_MARK, "").trim();
+            if(!src.startsWith(ELE_PREFIX) && src.contains(":")){
+                src = src.replaceAll(":", "");
+            }
+        }
+        return src;
+    }
+
+
     private static int getLeftTrimSpace(String value) {
         int len = value.length();
         int st = 0;
@@ -169,8 +180,8 @@ public class ApkXmlParse {
     }
 
     public static void main(String[] args) throws IOException {
-        //File fileDir = new File("E:\\测试相关\\apk\\");
-        File fileDir = new File("E:\\apkUrl\\");
+        File fileDir = new File("E:\\测试相关\\apk\\");
+        //File fileDir = new File("E:\\apkUrl\\");
         if (!fileDir.isDirectory() || fileDir.list().length < 1)
             return;
         for (File file : fileDir.listFiles((pathname) -> {
